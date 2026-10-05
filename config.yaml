@@ -1,0 +1,59 @@
+# Doodle Engine settings
+
+video:
+  width: 1920
+  height: 1080
+  fps: 24
+  audio_bitrate: 128k
+
+# Scene art. provider: svg = Gemini-authored vector scenes (free text tier).
+# 'pollinations' kept for reference but its flux model died upstream 2026-08.
+images:
+  provider: svg
+  svg_interval_s: 4
+  width: 1280          # generated size; FFmpeg upscales to video size
+  height: 720
+  model: flux
+  request_interval_s: 6   # polite gap between requests (free tier)
+  max_retries: 4
+  timeout_s: 180
+
+ken_burns:
+  enabled: true
+  max_zoom: 1.07
+  zoom_per_frame: 0.0004
+
+tts:
+  voice: en-US-BrianMultilingualNeural   # warm storyteller. More options: voice_samples/
+  rate: "+4%"
+  volume: "+0%"
+  pitch: "+0Hz"
+
+scenes:
+  min_seconds: 5.0
+  max_seconds: 9.0
+
+script:
+  min_words: 1250    # ~7-8 min at ~168 wpm effective (GuyNeural +6%)
+  max_words: 1450
+
+gemini:
+  model: gemini-3.6-flash
+  fallback_models:
+    - gemini-3.5-flash-lite
+    - gemini-flash-latest
+
+music:
+  enabled: false       # drop royalty-free tracks into assets/music and enable
+  dir: assets/music
+  volume: 0.06
+
+youtube:
+  privacy_status: private   # uploads land private; you flip to public manually
+  made_for_kids: false
+
+channel:
+  category_id: "27"          # Education
+  default_language: en
+
+ffmpeg_path: ffmpeg

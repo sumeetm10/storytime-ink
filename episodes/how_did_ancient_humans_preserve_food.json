@@ -1,0 +1,1351 @@
+{
+ "slug": "how_did_ancient_humans_preserve_food",
+ "title": "How did ancient humans keep meat fresh without fridges?",
+ "thumb": [
+  "ANCIENT",
+  "FRIDGE?"
+ ],
+ "description": "Discover how early hunter-gatherers and villagers stored meat and food long before the invention of modern refrigerators.\n- Explore Ice Man and Göbekli Tepe preservation methods\n- Learn how ancient communities stored wild game\nComment below with your favorite old-school food trick!\n#AncientFood #History #Archaeology #Prehistory",
+ "tags": [
+  "ancient food",
+  "prehistory",
+  "archaeology",
+  "food storage",
+  "hunter gatherers",
+  "history",
+  "ice man"
+ ],
+ "facts": {
+  "Pitted Ware culture": [
+   "The economy of the Pitted Ware culture was based on fishing, hunting and gathering of plants.",
+   "Pitted Ware sites contain bones from elk, deer, beaver, seal, porpoise, and pig.",
+   "Seasonal migration was a feature of life, as with many other hunter-gatherer communities."
+  ],
+  "Göbekli Tepe": [
+   "The settlement was inhabited from around 9500 BCE to at least 8000 BCE, during the Pre-Pottery Neolithic.",
+   "Archaeozoological evidence hints at \"large-scale hunting of gazelle between midsummer and autumn.\"",
+   "The prehistoric village acquired drinking water through a rainwater harvesting system, consisting of carved channels that fed several cisterns carved into the bedrock under the site"
+  ],
+  "Blombos Cave": [
+   "The cave contains Middle Stone Age (MSA) deposits currently dated at between c. 100,000 and 70,000 years Before Present (BP)",
+   "The most informative archaeological material from Blombos Cave includes engraved ochre, engraved bone ochre processing kits, marine shell beads, refined bone and stone tools and a broad range of terrestrial and marine faunal remains, including shellfish, birds, tortoise and ostrich egg shell, and mammals of various sizes."
+  ]
+ },
+ "lines": [
+  {
+   "text": "Imagine bringing home a massive hunt, but you have no refrigerator to keep it safe.",
+   "kind": "hook",
+   "shot": {
+    "bg": "paper",
+    "chapter": "PART 1 · THE MEAT PROBLEM",
+    "zoom": [
+     1.0,
+     1.05
+    ],
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "stand",
+      "mood": "worried",
+      "look": 0
+     }
+    ],
+    "props": [
+     {
+      "k": "svg",
+      "what": "a raw mammoth steak",
+      "x": 480.0,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.4,
+      "svg": "<g><path d=\"M80 150 Q200 110 320 160 Q360 250 310 320 Q200 350 100 320 Q50 240 80 150 Z\" fill=\"#b9553a\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M100 170 Q190 140 300 180 Q330 240 290 300 Q200 330 120 300 Q80 230 100 170 Z\" fill=\"#f4f1ea\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><ellipse cx=\"210\" cy=\"230\" rx=\"60\" ry=\"40\" fill=\"#b9553a\" stroke=\"#2a2320\" stroke-width=\"7\"/><ellipse cx=\"320\" cy=\"280\" rx=\"25\" ry=\"22\" fill=\"#e8dcbc\" stroke=\"#2a2320\" stroke-width=\"7\"/><path d=\"M130 190 Q150 220 120 250 M250 160 Q270 200 240 230 M150 280 Q180 290 200 270\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"3\" stroke-linecap=\"round\"/></g>"
+     }
+    ],
+    "tags": [
+     {
+      "text": "NO FRIDGE",
+      "x": 960,
+      "y": 180,
+      "at": 0.1,
+      "size": 52,
+      "color": "red"
+     }
+    ]
+   }
+  },
+  {
+   "text": "Long before electricity, early humans faced a race against time and hungry bacteria.",
+   "kind": "walk",
+   "shot": {
+    "bg": "savanna-night",
+    "zoom": [
+     1.0,
+     1.06
+    ],
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 760,
+      "y": 950,
+      "s": 1.2,
+      "pose": "walk",
+      "mood": "worried",
+      "look": 1
+     }
+    ],
+    "props": [
+     {
+      "k": "fire",
+      "x": 1200,
+      "y": 950,
+      "s": 0.8
+     }
+    ]
+   }
+  },
+  {
+   "text": "How did they stop their hard-earned food from spoiling in the prehistoric heat?",
+   "kind": "question",
+   "shot": {
+    "bg": "paper",
+    "props": [
+     {
+      "k": "question",
+      "x": 1240,
+      "y": 420,
+      "from": [
+       960,
+       560
+      ],
+      "at": 0.3
+     }
+    ],
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "think",
+      "mood": "neutral",
+      "look": 0
+     }
+    ]
+   }
+  },
+  {
+   "text": "The answers are hidden in ancient garbage heaps, cave floors, and rocky hilltops.",
+   "kind": "reveal",
+   "shot": {
+    "bg": "cave-night",
+    "actors": [
+     {
+      "who": "scientist",
+      "x": 960,
+      "y": 960,
+      "s": 1.3,
+      "pose": "point",
+      "mood": "happy",
+      "look": 1
+     }
+    ],
+    "props": [
+     {
+      "k": "bones",
+      "x": 600,
+      "y": 960,
+      "s": 1.0,
+      "at": 0.4
+     }
+    ],
+    "tags": [
+     {
+      "text": "CLUES IN THE CAVE",
+      "x": 960,
+      "y": 170,
+      "at": 0.2,
+      "size": 48
+     }
+    ]
+   }
+  },
+  {
+   "text": "Let us step back to southern Scandinavia, home of the Pitted Ware culture.",
+   "kind": "walk",
+   "shot": {
+    "bg": "paper",
+    "chapter": "PART 2 · THE COASTAL HUNTERS",
+    "zoom": [
+     1.0,
+     1.05
+    ],
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "stand",
+      "mood": "neutral",
+      "look": 0
+     }
+    ],
+    "tags": [
+     {
+      "text": "PITTED WARE CULTURE",
+      "x": 960,
+      "y": 170,
+      "at": 0.3,
+      "size": 46
+     }
+    ]
+   }
+  },
+  {
+   "text": "The economy of the Pitted Ware culture was based on fishing, hunting and gathering of plants.",
+   "kind": "reveal",
+   "shot": {
+    "bg": "paper",
+    "props": [
+     {
+      "k": "svg",
+      "what": "a fish hook",
+      "x": 960,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.4,
+      "svg": "<g><path d=\"M220 70 L220 220 Q220 310 160 330 Q110 340 90 290 Q120 290 130 310 Q150 320 170 300 Q190 270 180 220 L180 70 Z\" fill=\"#a9c4cf\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><ellipse cx=\"200\" cy=\"70\" rx=\"20\" ry=\"12\" fill=\"#a9c4cf\" stroke=\"#2a2320\" stroke-width=\"7\"/><path d=\"M187 70 L213 70\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"4\"/><path d=\"M190 120 L210 120 M190 180 L210 180\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"3\"/></g>"
+     }
+    ],
+    "big": {
+     "text": "FISH & HUNT",
+     "at": 0.1,
+     "y": 180
+    }
+   }
+  },
+  {
+   "text": "Pitted Ware sites contain bones from elk, deer, beaver, seal, porpoise, and pig.",
+   "kind": "reveal",
+   "shot": {
+    "bg": "paper",
+    "props": [
+     {
+      "k": "bones",
+      "x": 960,
+      "y": 950,
+      "s": 1.2,
+      "at": 0.2
+     }
+    ],
+    "tags": [
+     {
+      "text": "ELK",
+      "x": 500,
+      "y": 800,
+      "at": 0.4
+     },
+     {
+      "text": "SEAL",
+      "x": 960,
+      "y": 800,
+      "at": 0.6
+     },
+     {
+      "text": "BEAVER",
+      "x": 1420,
+      "y": 800,
+      "at": 0.8
+     }
+    ]
+   }
+  },
+  {
+   "text": "When you catch a seal or a deer, you suddenly have hundreds of pounds of meat.",
+   "kind": "stop",
+   "shot": {
+    "bg": "savanna-night",
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "stand",
+      "mood": "wow",
+      "look": 0
+     }
+    ],
+    "props": [
+     {
+      "k": "svg",
+      "what": "a whole deer carcass",
+      "x": 480.0,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.3,
+      "svg": "<g><path d=\"M70 240 Q100 150 160 170 Q180 120 200 160 Q260 140 300 200 Q350 250 320 300 Q280 330 200 310 Q100 330 70 240 Z\" fill=\"#c9b25e\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M130 180 L90 120 M170 165 L150 100 M270 210 L310 150 M290 230 L350 180\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linecap=\"round\"/><circle cx=\"190\" cy=\"140\" r=\"12\" fill=\"#e8dcbc\" stroke=\"#2a2320\" stroke-width=\"7\"/><path d=\"M110 240 Q200 220 290 260 M130 280 Q200 270 270 290\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"3\" stroke-linecap=\"round\"/></g>"
+     }
+    ],
+    "tags": [
+     {
+      "text": "HUNDREds OF POUNDS",
+      "x": 960,
+      "y": 170,
+      "at": 0.45,
+      "size": 44,
+      "color": "red"
+     }
+    ]
+   }
+  },
+  {
+   "text": "Eating it all before it spoiled was simply impossible for a small family group.",
+   "kind": "walk",
+   "shot": {
+    "bg": "paper",
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 800,
+      "y": 950,
+      "s": 1.2,
+      "pose": "sit",
+      "mood": "worried",
+      "look": 1
+     },
+     {
+      "who": "hominin2",
+      "x": 1120,
+      "y": 950,
+      "s": 1.2,
+      "pose": "sit",
+      "mood": "worried",
+      "flip": true,
+      "look": 1
+     }
+    ],
+    "props": [
+     {
+      "k": "svg",
+      "what": "flies buzzing",
+      "x": 1280.0,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.5,
+      "svg": "<g><ellipse cx=\"140\" cy=\"150\" rx=\"25\" ry=\"18\" fill=\"#3a4357\" stroke=\"#2a2320\" stroke-width=\"7\"/><ellipse cx=\"165\" cy=\"140\" rx=\"20\" ry=\"12\" fill=\"#f4f1ea\" stroke=\"#2a2320\" stroke-width=\"4\"/><ellipse cx=\"115\" cy=\"140\" rx=\"20\" ry=\"12\" fill=\"#f4f1ea\" stroke=\"#2a2320\" stroke-width=\"4\"/><ellipse cx=\"280\" cy=\"260\" rx=\"25\" ry=\"18\" fill=\"#3a4357\" stroke=\"#2a2320\" stroke-width=\"7\"/><ellipse cx=\"305\" cy=\"250\" rx=\"20\" ry=\"12\" fill=\"#f4f1ea\" stroke=\"#2a2320\" stroke-width=\"4\"/><ellipse cx=\"255\" cy=\"250\" rx=\"20\" ry=\"12\" fill=\"#f4f1ea\" stroke=\"#2a2320\" stroke-width=\"4\"/><path d=\"M60 280 Q100 180 160 220 T260 140 T340 220\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"4\" stroke-dasharray=\"10 10\"/></g>"
+     }
+    ]
+   }
+  },
+  {
+   "text": "So how did these coastal people prevent waste? They used nature's deep freeze.",
+   "kind": "reveal",
+   "shot": {
+    "bg": "paper",
+    "zoom": [
+     1.0,
+     1.05
+    ],
+    "props": [
+     {
+      "k": "svg",
+      "what": "a block of lake ice",
+      "x": 960,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.4,
+      "svg": "<g><path d=\"M80 160 L280 120 L330 240 L130 280 Z\" fill=\"#a9c4cf\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M280 120 L340 180 L290 300 L130 280\" fill=\"#f3ead8\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M80 160 L140 220 L290 300\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"3\"/><path d=\"M135 190 L180 180 M200 230 L250 220 M150 250 L200 240\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"3\"/></g>"
+     }
+    ],
+    "tags": [
+     {
+      "text": "DEEP FREEZE",
+      "x": 960,
+      "y": 170,
+      "at": 0.2,
+      "size": 52,
+      "color": "blue"
+     }
+    ]
+   }
+  },
+  {
+   "text": "Freezing meat in ice pits or snow banks slowed down bacterial growth completely.",
+   "kind": "walk",
+   "shot": {
+    "bg": "paper",
+    "props": [
+     {
+      "k": "svg",
+      "what": "an underground ice pit",
+      "x": 960,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.3,
+      "svg": "<g><rect x=\"90\" y=\"100\" width=\"220\" height=\"220\" rx=\"20\" fill=\"#a9c4cf\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M90 140 L310 140 M110 200 L290 200 M100 260 L300 260\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linecap=\"round\"/><path d=\"M130 140 L110 200 L140 260 M270 140 L290 200 L260 260\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"4\" stroke-linecap=\"round\"/></g>"
+     }
+    ],
+    "tags": [
+     {
+      "text": "ICE PIT",
+      "x": 960,
+      "y": 170,
+      "at": 0.1,
+      "size": 48
+     }
+    ]
+   }
+  },
+  {
+   "text": "Seasonal migration was a feature of life, as with many other hunter-gatherer communities.",
+   "kind": "reveal",
+   "shot": {
+    "bg": "savanna-night",
+    "zoom": [
+     1.0,
+     1.05
+    ],
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 600,
+      "y": 950,
+      "s": 1.2,
+      "pose": "walk",
+      "mood": "neutral",
+      "look": 1
+     },
+     {
+      "who": "hominin2",
+      "x": 800,
+      "y": 950,
+      "s": 1.2,
+      "pose": "walk",
+      "mood": "neutral",
+      "look": 1
+     }
+    ],
+    "tags": [
+     {
+      "text": "SEASONAL MIGRATION",
+      "x": 960,
+      "y": 170,
+      "at": 0.4,
+      "size": 44
+     }
+    ]
+   }
+  },
+  {
+   "text": "They packed up their cured and frozen supplies and moved with the animal herds.",
+   "kind": "stop",
+   "shot": {
+    "bg": "savanna-night",
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "stand",
+      "mood": "happy",
+      "look": 0
+     }
+    ],
+    "props": [
+     {
+      "k": "svg",
+      "what": "a bundled meat pack",
+      "x": 480.0,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.3,
+      "svg": "<g><rect x=\"110\" y=\"130\" width=\"180\" height=\"140\" rx=\"25\" fill=\"#b9553a\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M110 170 L290 170 M110 230 L290 230 M170 130 L170 270 M230 130 L230 270\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"4\"/><ellipse cx=\"200\" cy=\"200\" rx=\"20\" ry=\"15\" fill=\"#ff9a3d\" stroke=\"#2a2320\" stroke-width=\"7\"/><path d=\"M130 150 L150 150 M250 250 L270 250\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"3\"/></g>"
+     }
+    ]
+   }
+  },
+  {
+   "text": "Smoking and drying over open hearth fires drew out moisture efficiently.",
+   "kind": "reveal",
+   "shot": {
+    "bg": "cave-night",
+    "glow": true,
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "stand",
+      "mood": "neutral",
+      "look": 0
+     }
+    ],
+    "props": [
+     {
+      "k": "fire",
+      "x": 960,
+      "y": 960,
+      "s": 1.2
+     },
+     {
+      "k": "svg",
+      "what": "hanging strips of meat",
+      "x": 480.0,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.3,
+      "svg": "<g><rect x=\"80\" y=\"60\" width=\"240\" height=\"30\" rx=\"10\" fill=\"#7a5638\" stroke=\"#2a2320\" stroke-width=\"7\"/><path d=\"M110 90 L110 330 Q130 350 150 330 L150 90 Z\" fill=\"#b9553a\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M190 90 L190 310 Q210 330 230 310 L230 90 Z\" fill=\"#b9553a\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M270 90 L270 340 Q290 360 310 340 L310 90 Z\" fill=\"#b9553a\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M115 150 Q130 160 145 150 M115 220 Q130 230 145 220 M195 180 Q210 190 225 180 M275 160 Q290 170 305 160 M275 250 Q290 260 305 250\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"4\"/></g>"
+     }
+    ],
+    "tags": [
+     {
+      "text": "SMOKING",
+      "x": 960,
+      "y": 170,
+      "at": 0.1,
+      "size": 50
+     }
+    ]
+   }
+  },
+  {
+   "text": "Without water, bacteria simply cannot multiply, leaving strips of jerky that last for months.",
+   "kind": "walk",
+   "shot": {
+    "bg": "paper",
+    "props": [
+     {
+      "k": "svg",
+      "what": "dried jerky strips",
+      "x": 960,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.4,
+      "svg": "<g><path d=\"M80 120 Q120 100 160 130 T240 110 T320 140 L340 280 Q300 310 260 290 T180 320 T100 290 Z\" fill=\"#7a5638\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M120 160 Q180 150 240 190 M140 220 Q220 200 280 250 M100 270 Q160 260 220 280\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"4\"/><path d=\"M90 90 Q110 80 130 105 T170 95 L165 135 Q145 140 125 125 Z\" fill=\"#7a5638\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M270 70 Q300 65 330 90 T300 130 L275 110 Z\" fill=\"#7a5638\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/></g>"
+     }
+    ],
+    "tags": [
+     {
+      "text": "JERKY",
+      "x": 960,
+      "y": 170,
+      "at": 0.1,
+      "size": 52,
+      "color": "red"
+     }
+    ]
+   }
+  },
+  {
+   "text": "Now, let us travel far south to the rocky cliffs of Blombos Cave.",
+   "kind": "walk",
+   "shot": {
+    "bg": "cave-night",
+    "chapter": "PART 3 · THE CAVE DEPTHS",
+    "zoom": [
+     1.0,
+     1.05
+    ],
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "stand",
+      "mood": "neutral",
+      "look": 0
+     }
+    ],
+    "tags": [
+     {
+      "text": "BLOMBOS CAVE",
+      "x": 960,
+      "y": 170,
+      "at": 0.3,
+      "size": 48
+     }
+    ]
+   }
+  },
+  {
+   "text": "The cave contains Middle Stone Age (MSA) deposits currently dated at between c. 100,000 and 70,000 years Before Present (BP).",
+   "kind": "reveal",
+   "shot": {
+    "bg": "cave-night",
+    "actors": [
+     {
+      "who": "scientist",
+      "x": 960,
+      "y": 960,
+      "s": 1.3,
+      "pose": "point",
+      "mood": "happy",
+      "look": 1
+     }
+    ],
+    "tags": [
+     {
+      "text": "100,000 YEARS AGO",
+      "x": 960,
+      "y": 170,
+      "at": 0.4,
+      "size": 42
+     }
+    ]
+   }
+  },
+  {
+   "text": "Early humans here lived through dramatic environmental shifts.",
+   "kind": "stop",
+   "shot": {
+    "bg": "savanna-night",
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "stand",
+      "mood": "worried",
+      "look": 0
+     }
+    ],
+    "tags": [
+     {
+      "text": "ENVIRONMENTAL SHIFTS",
+      "x": 960,
+      "y": 170,
+      "at": 0.3,
+      "size": 40
+     }
+    ]
+   }
+  },
+  {
+   "text": "The most informative archaeological material from Blombos Cave includes engraved ochre, engraved bone ochre processing kits, marine shell beads, refined bone and stone tools and a broad range of terrestrial and marine faunal remains, including shellfish, birds, tortoise and ostrich egg shell, and mammals of various sizes.",
+   "kind": "reveal",
+   "shot": {
+    "bg": "paper",
+    "props": [
+     {
+      "k": "draws",
+      "what": "shell beads and stone tools",
+      "x": 960,
+      "y": 560,
+      "s": 1.2,
+      "at": 0.2
+     }
+    ],
+    "big": {
+     "text": "SHELLFISH & BIRDS",
+     "at": 0.1,
+     "y": 170,
+     "size": 60
+    }
+   }
+  },
+  {
+   "text": "Ostrich egg shells served as natural waterproof containers for water and liquid fat.",
+   "kind": "walk",
+   "shot": {
+    "bg": "cave-night",
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "sit",
+      "mood": "happy",
+      "look": 0
+     }
+    ],
+    "props": [
+     {
+      "k": "svg",
+      "what": "an ostrich eggshell flask",
+      "x": 480.0,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.4,
+      "svg": "<g><path d=\"M160 100 Q240 80 260 140 Q290 240 240 310 Q200 340 160 310 Q110 240 140 140 Q150 100 160 100 Z\" fill=\"#f3ead8\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><ellipse cx=\"200\" cy=\"100\" rx=\"25\" ry=\"10\" fill=\"#e8dcbc\" stroke=\"#2a2320\" stroke-width=\"7\"/><path d=\"M160 180 Q200 190 230 170 M150 230 Q200 250 250 220 M170 280 Q200 290 220 270\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"3\" stroke-linecap=\"round\"/></g>"
+     }
+    ],
+    "tags": [
+     {
+      "text": "OSTRICH EGG FLASK",
+      "x": 960,
+      "y": 170,
+      "at": 0.1,
+      "size": 44
+     }
+    ]
+   }
+  },
+  {
+   "text": "Rendering animal fat created a seal against air, protecting nutrient-dense food from ruin.",
+   "kind": "reveal",
+   "shot": {
+    "bg": "paper",
+    "props": [
+     {
+      "k": "svg",
+      "what": "poured rendered fat",
+      "x": 960,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.4,
+      "svg": "<g><path d=\"M120 80 Q100 120 110 160 Q105 200 125 240 Q135 280 160 320 Q180 340 200 340 Q220 340 240 320 Q265 280 275 240 Q295 200 290 160 Q300 120 280 80 Z\" fill=\"#ffcf6a\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><ellipse cx=\"200\" cy=\"80\" rx=\"90\" ry=\"25\" fill=\"#ff9a3d\" stroke=\"#2a2320\" stroke-width=\"7\"/><path d=\"M150 140 Q200 160 250 140 M140 210 Q200 230 260 210 M160 280 Q200 295 240 280\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"4\"/></g>"
+     }
+    ],
+    "tags": [
+     {
+      "text": "RENDERED FAT",
+      "x": 960,
+      "y": 170,
+      "at": 0.1,
+      "size": 48
+     }
+    ]
+   }
+  },
+  {
+   "text": "Now let us leap forward to Upper Mesopotamia and the mysterious mounds of Göbekli Tepe.",
+   "kind": "walk",
+   "shot": {
+    "bg": "paper",
+    "chapter": "PART 4 · THE TEMPLE HILL",
+    "zoom": [
+     1.0,
+     1.05
+    ],
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "stand",
+      "mood": "wow",
+      "look": 0
+     }
+    ],
+    "tags": [
+     {
+      "text": "GÖBEKLI TEPE",
+      "x": 960,
+      "y": 170,
+      "at": 0.3,
+      "size": 52
+     }
+    ]
+   }
+  },
+  {
+   "text": "The settlement was inhabited from around 9500 BCE to at least 8000 BCE, during the Pre-Pottery Neolithic.",
+   "kind": "reveal",
+   "shot": {
+    "bg": "paper",
+    "props": [
+     {
+      "k": "calendar",
+      "x": 960,
+      "y": 500,
+      "text": "9500 BCE",
+      "at": 0.3
+     }
+    ],
+    "tags": [
+     {
+      "text": "PRE-POTTERY NEOLITHIC",
+      "x": 960,
+      "y": 180,
+      "at": 0.5,
+      "size": 42
+     }
+    ]
+   }
+  },
+  {
+   "text": "Imagine feeding large gatherings of builders and priests without modern food storage.",
+   "kind": "stop",
+   "shot": {
+    "bg": "town-night",
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 800,
+      "y": 950,
+      "s": 1.2,
+      "pose": "stand",
+      "mood": "worried",
+      "look": 1
+     },
+     {
+      "who": "hominin2",
+      "x": 1120,
+      "y": 950,
+      "s": 1.2,
+      "pose": "stand",
+      "mood": "worried",
+      "flip": true,
+      "look": 1
+     }
+    ],
+    "tags": [
+     {
+      "text": "MASSIVE FEASTS",
+      "x": 960,
+      "y": 170,
+      "at": 0.3,
+      "size": 48,
+      "color": "red"
+     }
+    ]
+   }
+  },
+  {
+   "text": "Archaeozoological evidence hints at \"large-scale hunting of gazelle between midsummer and autumn.\"",
+   "kind": "reveal",
+   "shot": {
+    "bg": "paper",
+    "props": [
+     {
+      "k": "svg",
+      "what": "a gazelle herd",
+      "x": 960,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.3,
+      "svg": "<g><path d=\"M60 260 Q70 230 90 240 L100 270 M85 240 Q75 180 90 150 Q105 130 115 150 L100 200\" fill=\"#d9a14e\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M150 250 Q160 220 180 230 L190 260 M175 230 Q165 170 180 140 Q195 120 205 140 L190 190\" fill=\"#d9a14e\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M240 270 Q250 240 270 250 L280 280 M265 250 Q255 190 270 160 Q285 140 295 160 L280 210\" fill=\"#d9a14e\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M95 160 Q120 140 140 130 M185 150 Q210 135 230 125\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"3\"/></g>"
+     }
+    ],
+    "big": {
+     "text": "GAZELLE HUNTING",
+     "at": 0.1,
+     "y": 170,
+     "size": 60
+    }
+   }
+  },
+  {
+   "text": "Hunters drove whole herds into specially built stone enclosures during seasonal migrations.",
+   "kind": "walk",
+   "shot": {
+    "bg": "savanna-night",
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 600,
+      "y": 950,
+      "s": 1.2,
+      "pose": "point",
+      "mood": "neutral",
+      "look": 1
+     }
+    ],
+    "props": [
+     {
+      "k": "svg",
+      "what": "a stone trap wall",
+      "x": 1300,
+      "y": 600,
+      "s": 1.3,
+      "at": 0.4,
+      "svg": "<g><rect x=\"80\" y=\"120\" width=\"80\" height=\"180\" rx=\"10\" fill=\"#8c7a68\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect x=\"165\" y=\"100\" width=\"90\" height=\"200\" rx=\"10\" fill=\"#a9c4cf\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect x=\"260\" y=\"140\" width=\"70\" height=\"160\" rx=\"10\" fill=\"#8c7a68\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M100 160 L140 160 M110 220 L150 220 M190 150 L230 150 M185 220 L235 220 M280 180 L310 180 M280 240 L310 240 M60 300 L340 300\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"4\" stroke-linecap=\"round\"/></g>"
+     }
+    ],
+    "tags": [
+     {
+      "text": "STONE ENCLOSURES",
+      "x": 960,
+      "y": 170,
+      "at": 0.2,
+      "size": 44
+     }
+    ]
+   }
+  },
+  {
+   "text": "This provided a sudden surplus of meat that had to be processed instantly.",
+   "kind": "stop",
+   "shot": {
+    "bg": "paper",
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "stand",
+      "mood": "wow",
+      "look": 0
+     }
+    ],
+    "props": [
+     {
+      "k": "svg",
+      "what": "stacks of meat cuts",
+      "x": 480.0,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.3,
+      "svg": "<g><path d=\"M100 260 L100 300 Q200 330 300 300 L300 260 Q200 290 100 260 Z\" fill=\"#b9553a\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M100 200 L100 240 Q200 270 300 240 L300 200 Q200 230 100 200 Z\" fill=\"#b9553a\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M100 140 L100 180 Q200 210 300 180 L300 140 Q200 170 100 140 Z\" fill=\"#b9553a\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M100 80 L100 120 Q200 150 300 120 L300 80 Q200 110 100 80 Z\" fill=\"#b9553a\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M100 100 L100 280 M300 100 L300 280\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"7\"/><ellipse cx=\"200\" cy=\"100\" rx=\"100\" ry=\"25\" fill=\"#ff9a3d\" stroke=\"#2a2320\" stroke-width=\"7\"/><ellipse cx=\"200\" cy=\"160\" rx=\"100\" ry=\"25\" fill=\"#ff9a3d\" stroke=\"#2a2320\" stroke-width=\"7\"/><ellipse cx=\"200\" cy=\"220\" rx=\"100\" ry=\"25\" fill=\"#ff9a3d\" stroke=\"#2a2320\" stroke-width=\"7\"/><ellipse cx=\"200\" cy=\"280\" rx=\"100\" ry=\"25\" fill=\"#ff9a3d\" stroke=\"#2a2320\" stroke-width=\"7\"/></g>"
+     }
+    ],
+    "tags": [
+     {
+      "text": "MEAT SURPLUS",
+      "x": 960,
+      "y": 170,
+      "at": 0.45,
+      "size": 46
+     }
+    ]
+   }
+  },
+  {
+   "text": "The prehistoric village acquired drinking water through a rainwater harvesting system, consisting of carved channels that fed several cisterns carved into the bedrock under the site.",
+   "kind": "reveal",
+   "shot": {
+    "bg": "paper",
+    "props": [
+     {
+      "k": "svg",
+      "what": "rock-cut water channels",
+      "x": 960,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.3,
+      "svg": "<g><rect x=\"70\" y=\"70\" width=\"260\" height=\"260\" rx=\"20\" fill=\"#8c7a68\" stroke=\"#2a2320\" stroke-width=\"7\"/><path d=\"M70 140 Q150 170 200 140 T330 150 L330 220 Q250 190 200 220 T70 210 Z\" fill=\"#a9c4cf\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M100 148 Q150 168 200 148 T300 155 M110 202 Q160 182 200 202 T290 195\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"4\"/><path d=\"M110 70 L110 140 M290 70 L290 140 M110 210 L110 330 M290 220 L290 330\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"4\"/></g>"
+     }
+    ],
+    "big": {
+     "text": "WATER CISTERNS",
+     "at": 0.1,
+     "y": 170,
+     "size": 60
+    }
+   }
+  },
+  {
+   "text": "Cold subterranean cisterns also doubled as natural cooling chambers for perishable goods.",
+   "kind": "walk",
+   "shot": {
+    "bg": "cave-night",
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "stand",
+      "mood": "happy",
+      "look": 0
+     }
+    ],
+    "props": [
+     {
+      "k": "svg",
+      "what": "an underground water cistern",
+      "x": 480.0,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.4,
+      "svg": "<g><path d=\"M120 120 L280 120 L310 280 Q200 340 90 280 Z\" fill=\"#3a4357\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><ellipse cx=\"200\" cy=\"120\" rx=\"80\" ry=\"25\" fill=\"#a9c4cf\" stroke=\"#2a2320\" stroke-width=\"7\"/><path d=\"M140 200 Q200 220 260 200 M130 250 Q200 270 270 250\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"4\" stroke-linecap=\"round\"/></g>"
+     }
+    ],
+    "tags": [
+     {
+      "text": "COOLING CHAMBER",
+      "x": 960,
+      "y": 170,
+      "at": 0.2,
+      "size": 42
+     }
+    ]
+   }
+  },
+  {
+   "text": "Salting was another masterstroke discovered by ancient food innovators.",
+   "kind": "reveal",
+   "shot": {
+    "bg": "paper",
+    "props": [
+     {
+      "k": "svg",
+      "what": "a pile of white salt crystals",
+      "x": 960,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.3,
+      "svg": "<g><path d=\"M120 280 L160 180 L200 290 Z\" fill=\"#f3ead8\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M170 300 L220 150 L270 290 Z\" fill=\"#f3ead8\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M220 310 L270 220 L310 300 Z\" fill=\"#f3ead8\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M150 240 L160 180 L185 245 M210 220 L220 150 L245 235 M250 260 L270 220 L290 265\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"3\"/></g>"
+     }
+    ],
+    "tags": [
+     {
+      "text": "SALT PRESERVATION",
+      "x": 960,
+      "y": 170,
+      "at": 0.1,
+      "size": 44,
+      "color": "blue"
+     }
+    ]
+   }
+  },
+  {
+   "text": "Salt draws moisture out of meat cells through the magic of osmosis.",
+   "kind": "walk",
+   "shot": {
+    "bg": "paper",
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "point",
+      "mood": "neutral",
+      "look": 0
+     }
+    ],
+    "props": [
+     {
+      "k": "draws",
+      "what": "salt crystals on meat",
+      "x": 960,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.4
+     }
+    ],
+    "tags": [
+     {
+      "text": "OSMOSIS",
+      "x": 960,
+      "y": 170,
+      "at": 0.2,
+      "size": 52
+     }
+    ]
+   }
+  },
+  {
+   "text": "Without moisture, bacteria cannot survive, turning raw flesh into preserved sustenance.",
+   "kind": "reveal",
+   "shot": {
+    "bg": "paper",
+    "props": [
+     {
+      "k": "svg",
+      "what": "cured meat blocks",
+      "x": 960,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.3,
+      "svg": "<g><rect x=\"70\" y=\"170\" width=\"120\" height=\"140\" rx=\"15\" fill=\"#b9553a\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect x=\"180\" y=\"110\" width=\"140\" height=\"150\" rx=\"15\" fill=\"#7a5638\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M90 210 Q130 200 170 220 M90 250 Q130 240 170 260 M200 150 Q250 140 300 160 M200 190 Q250 180 300 200 M200 230 Q250 220 300 240\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"3\" stroke-linecap=\"round\"/></g>"
+     }
+    ],
+    "big": {
+     "text": "CURED FLESH",
+     "at": 0.1,
+     "y": 170,
+     "size": 60
+    }
+   }
+  },
+  {
+   "text": "Fermentation also played a surprising role in early food storage.",
+   "kind": "walk",
+   "shot": {
+    "bg": "paper",
+    "chapter": "PART 5 · FERMENTATION",
+    "zoom": [
+     1.0,
+     1.05
+    ],
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "stand",
+      "mood": "wow",
+      "look": 0
+     }
+    ],
+    "tags": [
+     {
+      "text": "FERMENTATION",
+      "x": 960,
+      "y": 170,
+      "at": 0.3,
+      "size": 48
+     }
+    ]
+   }
+  },
+  {
+   "text": "Burrying fish or meat in acidic bogs prevented harmful rot while preserving protein.",
+   "kind": "reveal",
+   "shot": {
+    "bg": "paper",
+    "props": [
+     {
+      "k": "svg",
+      "what": "a bog burial pit",
+      "x": 960,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.3,
+      "svg": "<g><ellipse cx=\"200\" cy=\"220\" rx=\"160\" ry=\"100\" fill=\"#8c7a68\" stroke=\"#2a2320\" stroke-width=\"7\"/><ellipse cx=\"200\" cy=\"230\" rx=\"120\" ry=\"70\" fill=\"#3a4357\" stroke=\"#2a2320\" stroke-width=\"7\"/><path d=\"M120 230 Q160 250 200 220 Q240 190 280 230\" fill=\"#7a5638\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M140 215 Q170 200 200 225 M180 235 Q210 250 250 225\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"3\"/></g>"
+     }
+    ],
+    "tags": [
+     {
+      "text": "BOG PRESERVATION",
+      "x": 960,
+      "y": 170,
+      "at": 0.1,
+      "size": 42
+     }
+    ]
+   }
+  },
+  {
+   "text": "Acids kill off bad microbes while friendly bacteria take over the feast.",
+   "kind": "stop",
+   "shot": {
+    "bg": "paper",
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "stand",
+      "mood": "neutral",
+      "look": 0
+     }
+    ],
+    "props": [
+     {
+      "k": "svg",
+      "what": "microscopic bacteria art",
+      "x": 480.0,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.3,
+      "svg": "<g><circle cx=\"200\" cy=\"200\" r=\"130\" fill=\"#e8dcbc\" stroke=\"#2a2320\" stroke-width=\"7\"/><path d=\"M120 140 Q150 100 180 150 T240 130 T280 180\" fill=\"none\" stroke=\"#93a878\" stroke-width=\"20\" stroke-linecap=\"round\"/><path d=\"M100 250 Q130 280 170 240 T250 270 T300 230\" fill=\"none\" stroke=\"#b9553a\" stroke-width=\"20\" stroke-linecap=\"round\"/><circle cx=\"140\" cy=\"180\" r=\"22\" fill=\"#3a4357\" stroke=\"#2a2320\" stroke-width=\"7\"/><circle cx=\"260\" cy=\"220\" r=\"30\" fill=\"#ff9a3d\" stroke=\"#2a2320\" stroke-width=\"7\"/><circle cx=\"210\" cy=\"120\" r=\"15\" fill=\"#a9c4cf\" stroke=\"#2a2320\" stroke-width=\"7\"/><circle cx=\"150\" cy=\"280\" r=\"18\" fill=\"#f3ead8\" stroke=\"#2a2320\" stroke-width=\"7\"/></g>"
+     }
+    ],
+    "tags": [
+     {
+      "text": "GOOD MICROBES",
+      "x": 960,
+      "y": 170,
+      "at": 0.4,
+      "size": 44
+     }
+    ]
+   }
+  },
+  {
+   "text": "Every ingenious trick ensured our ancestors survived brutal winters and lean months.",
+   "kind": "walk",
+   "shot": {
+    "bg": "savanna-night",
+    "glow": true,
+    "actors": [
+     {
+      "who": "hominin",
+      "x": 760,
+      "y": 950,
+      "s": 1.2,
+      "pose": "sit",
+      "mood": "happy",
+      "look": 1
+     },
+     {
+      "who": "hominin2",
+      "x": 1160,
+      "y": 950,
+      "s": 1.2,
+      "pose": "sit",
+      "mood": "happy",
+      "flip": true,
+      "look": 1
+     }
+    ],
+    "props": [
+     {
+      "k": "fire",
+      "x": 960,
+      "y": 960,
+      "s": 1.1
+     }
+    ],
+    "tags": [
+     {
+      "text": "SURVIVAL",
+      "x": 960,
+      "y": 170,
+      "at": 0.3,
+      "size": 52
+     }
+    ]
+   }
+  },
+  {
+   "text": "They did not need modern appliances because their environment was their pantry.",
+   "kind": "reveal",
+   "shot": {
+    "bg": "paper",
+    "zoom": [
+     1.0,
+     1.05
+    ],
+    "props": [
+     {
+      "k": "svg",
+      "what": "a wild natural landscape",
+      "x": 960,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.3,
+      "svg": "<g><path d=\"M60 320 Q120 180 180 220 Q240 120 320 200 L360 320 Z\" fill=\"#93a878\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M40 320 Q150 240 220 300 Q280 220 370 320 Z\" fill=\"#6f9a52\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"280\" cy=\"100\" r=\"35\" fill=\"#ffcf6a\" stroke=\"#2a2320\" stroke-width=\"7\"/><path d=\"M180 220 L160 270 M240 170 L220 220 M120 280 L140 300\" fill=\"none\" stroke=\"#2a2320\" stroke-width=\"4\" stroke-linecap=\"round\"/></g>"
+     }
+    ],
+    "big": {
+     "text": "NATURE'S PANTRY",
+     "at": 0.1,
+     "y": 170,
+     "size": 60
+    }
+   }
+  },
+  {
+   "text": "Today, we press a button on our fridge and take cold food entirely for granted.",
+   "kind": "walk",
+   "shot": {
+    "bg": "room-night",
+    "chapter": "PART 6 · THE MODERN MIRROR",
+    "actors": [
+     {
+      "who": "modern",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "stand",
+      "mood": "neutral",
+      "look": 0
+     }
+    ],
+    "props": [
+     {
+      "k": "svg",
+      "what": "a modern refrigerator",
+      "x": 480.0,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.4,
+      "svg": "<g><rect x=\"110\" y=\"60\" width=\"180\" height=\"280\" rx=\"15\" fill=\"#f4f1ea\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><line x1=\"110\" y1=\"160\" x2=\"290\" y2=\"160\" stroke=\"#2a2320\" stroke-width=\"7\"/><rect x=\"250\" y=\"90\" width=\"12\" height=\"40\" rx=\"6\" fill=\"#3a4357\" stroke=\"#2a2320\" stroke-width=\"5\"/><rect x=\"250\" y=\"190\" width=\"12\" height=\"90\" rx=\"6\" fill=\"#3a4357\" stroke=\"#2a2320\" stroke-width=\"5\"/><circle cx=\"140\" cy=\"110\" r=\"8\" fill=\"#6f9a52\" stroke=\"#2a2320\" stroke-width=\"4\"/></g>"
+     }
+    ],
+    "tags": [
+     {
+      "text": "MODERN FRIDGE",
+      "x": 960,
+      "y": 170,
+      "at": 0.2,
+      "size": 46
+     }
+    ]
+   }
+  },
+  {
+   "text": "Next time you grab a snack, remember the brilliant ancient science behind it.",
+   "kind": "stop",
+   "shot": {
+    "bg": "room-night",
+    "actors": [
+     {
+      "who": "modern",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "wave",
+      "mood": "happy",
+      "look": 0
+     }
+    ],
+    "props": [
+     {
+      "k": "svg",
+      "what": "a cheese wedge",
+      "x": 480.0,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.4,
+      "svg": "<g><path d=\"M70 280 L330 220 L270 120 Z\" fill=\"#ffcf6a\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><path d=\"M70 280 L330 220 L330 260 L70 320 Z\" fill=\"#c9b25e\" stroke=\"#2a2320\" stroke-width=\"7\" stroke-linejoin=\"round\"/><circle cx=\"180\" cy=\"260\" r=\"12\" fill=\"#2a2320\"/><circle cx=\"250\" cy=\"230\" r=\"8\" fill=\"#2a2320\"/><circle cx=\"140\" cy=\"290\" r=\"10\" fill=\"#2a2320\"/><circle cx=\"220\" cy=\"170\" r=\"15\" fill=\"#2a2320\"/></g>"
+     }
+    ],
+    "tags": [
+     {
+      "text": "ANCIENT SCIENCE",
+      "x": 960,
+      "y": 170,
+      "at": 0.3,
+      "size": 44
+     }
+    ]
+   }
+  },
+  {
+   "text": "Subscribe to Story_time10 for more astonishing journeys into human prehistory.",
+   "kind": "cta",
+   "shot": {
+    "bg": "paper",
+    "actors": [
+     {
+      "who": "scientist",
+      "x": 960,
+      "y": 950,
+      "s": 1.3,
+      "pose": "wave",
+      "mood": "happy",
+      "look": 0
+     }
+    ],
+    "props": [
+     {
+      "k": "subscribe",
+      "x": 960,
+      "y": 560,
+      "s": 1.3,
+      "at": 0.3
+     }
+    ],
+    "tags": [
+     {
+      "text": "SUBSCRIBE",
+      "x": 960,
+      "y": 170,
+      "at": 0.1,
+      "size": 64,
+      "color": "red"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,67 @@
+name: storytime
+# One Gemini-made ink episode every 2 days for Story_time10.
+# Day 1 writes + self-reviews the episode (committed to episodes/), day 2 renders it and
+# schedules it public on YouTube at 15:00 UTC (20:45 Nepal). State: data/ink_state.json.
+on:
+  schedule:
+    - cron: "15 4 * * *"          # 04:15 UTC = 10:00 Nepal, every day
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: storytime
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: remotion/package-lock.json
+      - name: System packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg > /dev/null
+      - name: Python and Node packages
+        run: |
+          pip install -q -r requirements.txt
+          cd remotion && npm ci --silent
+      - name: Credentials (from repo secrets, never committed)
+        env:
+          YT_TOKEN_B64: ${{ secrets.YT_TOKEN_B64 }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: |
+          echo "$YT_TOKEN_B64" | base64 -d > token.json
+          printf '%s' "$YT_CLIENT_SECRET" > client_secret.json
+      - name: Today's step
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PYTHONIOENCODING: utf-8
+        run: python -u storytime_auto.py
+      - name: Save state and episodes
+        if: always()
+        run: |
+          rm -f token.json client_secret.json
+          git config user.name "storytime-bot"
+          git config user.email "storytime-bot@users.noreply.github.com"
+          git add data/ink_state.json episodes/
+          git diff --cached --quiet || (git commit -m "storytime: $(date -u +%F) step" && git push)
+      - name: Keep the video for a week
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: episode
+          path: |
+            output/*/*.mp4
+            output/*/thumb.jpg
+            remotion/out/*/review.jpg
+          retention-days: 7
+          if-no-files-found: ignore
