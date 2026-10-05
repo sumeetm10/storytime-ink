@@ -1,1 +1,16 @@
-{"pending": null, "posted": [{"slug": "sleep", "at": "2026-10-05T15:00:00+00:00", "log": "https://youtu.be/yA_js8UtUS8 (made by hand, Claude)"}]}
+{
+ "pending": null,
+ "posted": [
+  {
+   "slug": "sleep",
+   "at": "2026-10-05T15:00:00+00:00",
+   "log": "https://youtu.be/yA_js8UtUS8 (made by hand, Claude)"
+  },
+  {
+   "slug": "how_did_ancient_humans_preserve_food",
+   "at": "2026-10-07T15:00:00+00:00",
+   "log": "uploaded from the laptop"
+  }
+ ],
+ "wait_until": "2026-10-08"
+}

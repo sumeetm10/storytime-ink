@@ -133,6 +133,9 @@ def main():
         print(json.dumps(st, indent=1))
         return
     print(f"===== {datetime.now():%Y-%m-%d %H:%M} =====", flush=True)
+    if st.get("wait_until") and datetime.now(timezone.utc).date().isoformat() < st["wait_until"]:
+        print(f"[wait  ] nothing to do before {st['wait_until']} (an episode is already scheduled)")
+        return
     if st.get("pending"):
         make_day(st)
     else:
