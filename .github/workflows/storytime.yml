@@ -44,6 +44,7 @@ jobs:
       - name: Today's step
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS }}
           PYTHONIOENCODING: utf-8
         run: python -u storytime_auto.py
       - name: Save state and episodes

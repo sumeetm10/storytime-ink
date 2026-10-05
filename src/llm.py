@@ -16,11 +16,16 @@ def _strip_fences(text):
     return text.strip()
 
 
+_KEYS = []
+
+
 def client_models(cfg):
     """Build a Gemini client + ordered model list from config."""
-    if not cfg["gemini_api_key"]:
+    keys = cfg.get("gemini_api_keys") or ([cfg["gemini_api_key"]] if cfg.get("gemini_api_key") else [])
+    if not keys:
         raise RuntimeError("GEMINI_API_KEY not set in .env")
-    client = genai.Client(api_key=cfg["gemini_api_key"])
+    _KEYS[:] = keys
+    client = genai.Client(api_key=keys[0])
     gem_cfg = cfg.get("gemini") or {}
     primary = gem_cfg.get("model", "gemini-2.5-flash")
     fallbacks = gem_cfg.get("fallback_models",
@@ -29,6 +34,23 @@ def client_models(cfg):
 
 
 def _run(client, models_to_try, prompt, config):
+    """Try every model on this key; if they are all out of free requests, the next key (if any)."""
+    try:
+        return _run_one(client, models_to_try, prompt, config)
+    except Exception as e:
+        if "RESOURCE_EXHAUSTED" not in str(e) or len(_KEYS) < 2:
+            raise
+        for k, key in enumerate(_KEYS[1:], 2):
+            print(f"      [keys] free requests used up - trying Gemini key #{k}")
+            try:
+                return _run_one(genai.Client(api_key=key), models_to_try, prompt, config)
+            except Exception as e2:
+                if "RESOURCE_EXHAUSTED" not in str(e2):
+                    raise
+        raise
+
+
+def _run_one(client, models_to_try, prompt, config):
     last_err = None
     for model_name in models_to_try:
         for attempt in range(3):
