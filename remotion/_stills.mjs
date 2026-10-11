@@ -13,10 +13,10 @@ const shots = [];
 vo.forEach((_, i) => { if (comp === 'InkPilot') { shots.push([`${i}a`, at(i, 0.3)]); shots.push([`${i}b`, at(i, 0.88)]); } else if (i >= (props.intro ? 11 : 0)) shots.push([`${i}`, at(i, 0.6)]); });
 shots.push(['end', END - 0.2]);
 const serveUrl = await bundle({ entryPoint: path.join(root, 'src', 'index.ts') });
-const composition = await selectComposition({ serveUrl, id: comp, inputProps: props });
+const composition = await selectComposition({ serveUrl, id: comp, inputProps: props, chromiumOptions: { gl: 'angle' } });
 const dir = path.join(root, 'out', comp === 'InkPilot' ? 'ink' : job); fs.mkdirSync(dir, { recursive: true });
 for (const [k, s] of shots) {
   if (only.length && !only.includes(k)) continue;
-  await renderStill({ serveUrl, composition, inputProps: props, output: path.join(dir, `${k}.jpg`), frame: Math.min(Math.round(s * 30), composition.durationInFrames - 1), scale: 0.3, overwrite: true, imageFormat: 'jpeg' });
+  await renderStill({ serveUrl, composition, inputProps: props, chromiumOptions: { gl: 'angle' }, output: path.join(dir, `${k}.jpg`), frame: Math.min(Math.round(s * 30), composition.durationInFrames - 1), scale: 0.3, overwrite: true, imageFormat: 'jpeg' });
 }
 console.log('stills done');

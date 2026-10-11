@@ -118,7 +118,8 @@ def main():
         if shot is not None:
             cur = {**shot, "from": i}
             shots.append(cur)
-    props = {"vo": vo, "shots": shots, "intro": getattr(ep, "INTRO", None), "durationInSeconds": secs}
+    props = {"vo": vo, "shots": shots, "intro": getattr(ep, "INTRO", None), "durationInSeconds": secs,
+             "shaders": bool(getattr(ep, "SHADERS", False))}
     props_path.write_text(json.dumps(props), encoding="utf-8")
     print(f"[props ] {len(vo)} lines, {len(shots)} shots, {secs / 60:.1f} min")
     if "--props" in sys.argv:

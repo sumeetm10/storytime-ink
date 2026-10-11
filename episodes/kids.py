@@ -26,6 +26,7 @@ FACTS = {
     "Sungir": ["two adolescent children in Grave 2, placed head-to-head", "More than 13,000 beads", "10,000 hours", "30,500 and 30,000 BCE"],
     "Cave of Altamira": ["In 1879", "eight-year-old daughter María", "markings on the walls constituted drawings"],
 }
+SHADERS = True   # painted WebGL skies, cave rock, firelight and paper wash
 DERIVED = "10,000 hours of work = over 3 years at 8 hours a day; 30,000 BCE = about 32,000 years ago ('over 30,000 years ago')."
 
 PL = "playa"

@@ -1,6 +1,7 @@
 import React from 'react';
 import { AbsoluteFill, Img, staticFile, useCurrentFrame } from 'remotion';
 import InkPilot from './InkPilot';
+import { CaveRock, FireLight, InkSky, PaperWash } from './shaders';
 import {
   Acacia, Boil, Bubble, C, Eyes, Fire, Glow, H, HAND, INK, InkFonts, useInkFont, Moon, Person, Shape, Stars, Tag, Tuft, W,
   clamp, easeInOut, easeOut, lerp, prog,
@@ -34,7 +35,8 @@ type Shot = {
   actors?: ActorSpec[]; props?: PropSpec[]; tags?: TagSpec[];
   big?: El & { text: string; sub?: string; y?: number; size?: number; light?: boolean };
 };
-type Props = { vo: VoLine[]; shots: Shot[]; intro?: { lines: number; at: Record<string, number> } | null; durationInSeconds: number };
+type Props = { vo: VoLine[]; shots: Shot[]; intro?: { lines: number; at: Record<string, number> } | null; durationInSeconds: number;
+  shaders?: boolean };   // painted WebGL skies, rock, firelight and paper wash (shaders.tsx)
 
 const CAST: Record<string, { skin: string; tunic: string; hair: 'shaggy' | 'bun' | 'kid' | 'beard' | 'short' | 'bald'; s?: number;
   outfit?: Outfit; hairColor?: string; glasses?: boolean; brow?: boolean }> = {
@@ -81,13 +83,13 @@ const NightSky: React.FC<{ seed?: number }> = ({ seed = 3 }) => (
 );
 
 // ------------------------------------------------------------------ backgrounds
-const Background: React.FC<{ shot: Shot; t: (a: number, b: number) => number; f: number }> = ({ shot, t, f }) => {
+const Background: React.FC<{ shot: Shot; t: (a: number, b: number) => number; f: number; sh?: boolean }> = ({ shot, t, f, sh = false }) => {
   const bg = shot.bg;
   if (bg === 'savanna-night' || bg === 'dusk') {
     const night = bg !== 'dusk';
     return (
       <>
-        {night ? <NightSky seed={7} /> : (
+        {sh ? null : night ? <NightSky seed={7} /> : (
           <>
             <defs><linearGradient id="duskE" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stopColor="#9fb7d0" /><stop offset="0.75" stopColor="#f2b98a" /><stop offset="1" stopColor="#f6d39a" />
@@ -108,7 +110,7 @@ const Background: React.FC<{ shot: Shot; t: (a: number, b: number) => number; f:
         <defs><linearGradient id="playaSky" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#9fc0dc" /><stop offset="1" stopColor="#f2dcb4" />
         </linearGradient></defs>
-        <rect x={0} y={0} width={W} height={H} fill="url(#playaSky)" />
+        {!sh && <rect x={0} y={0} width={W} height={H} fill="url(#playaSky)" />}
         <Shape d="M 0 520 L 240 420 L 420 470 L 700 380 L 960 470 L 1260 400 L 1520 460 L 1920 390 L 1920 600 L 0 600 Z" fill="#a8a0b8" />
         <Shape d="M 0 560 Q 960 520 1920 560 L 1920 1080 L 0 1080 Z" fill="#e8dcc0" />
         {Array.from({ length: 16 }, (_, i) => <path key={i} d={`M ${(i * 137) % 1900} ${620 + ((i * 89) % 420)} q 40 -8 80 0`} stroke="#c9b894" strokeWidth={4} fill="none" />)}
@@ -121,7 +123,7 @@ const Background: React.FC<{ shot: Shot; t: (a: number, b: number) => number; f:
         <Shape d="M 1180 900 Q 1200 420 1470 330 Q 1760 300 1860 600 L 1900 900 Z" fill="#232a48" />
         <Stars o={1} n={30} seed={21} maxY={640} />
         <Moon x={1600} y={470} r={46} />
-        <Shape d="M 0 0 L 1920 0 L 1920 900 L 1900 900 L 1860 600 Q 1760 300 1470 330 Q 1200 420 1180 900 L 0 900 Z" fill="#8f7c68" />
+        <Shape d="M 0 0 L 1920 0 L 1920 900 L 1900 900 L 1860 600 Q 1760 300 1470 330 Q 1200 420 1180 900 L 0 900 Z" fill={sh ? undefined : '#8f7c68'} />
         <path d="M 120 200 q 80 -30 160 10 M 520 120 q 90 20 150 -10 M 300 520 q 70 -20 140 8 M 860 260 q 60 -24 130 4 M 80 700 q 60 -20 120 6"
           stroke={INK} strokeWidth={4} fill="none" opacity={0.45} />
         {[[200, 0, 70], [420, 0, 110], [760, 0, 60], [980, 0, 90]].map(([x, , h], i) => (
@@ -161,7 +163,7 @@ const Background: React.FC<{ shot: Shot; t: (a: number, b: number) => number; f:
     const houses = [[60, 300], [380, 360], [720, 280], [1060, 340], [1400, 300], [1720, 360]];
     return (
       <>
-        <NightSky seed={11} />
+        {!sh && <NightSky seed={11} />}
         {houses.map(([x, h], i) => (
           <g key={i}>
             <Shape d={`M ${x} 900 L ${x} ${900 - h} L ${x + 150} ${900 - h - 110} L ${x + 300} ${900 - h} L ${x + 300} 900 Z`} fill={i % 2 ? '#b8956a' : '#a88a66'} />
@@ -182,7 +184,7 @@ const Background: React.FC<{ shot: Shot; t: (a: number, b: number) => number; f:
   if (bg === 'village-night') {
     return (
       <>
-        <NightSky seed={13} />
+        {!sh && <NightSky seed={13} />}
         <Moon x={1790} y={150} r={50} />
         <Shape d="M 0 760 Q 480 730 960 750 Q 1440 770 1920 744 L 1920 1080 L 0 1080 Z" fill="#5f5a3a" />
         {[[260, 760, 0.8], [1680, 760, 0.7]].map(([x, y, s], i) => (
@@ -199,7 +201,7 @@ const Background: React.FC<{ shot: Shot; t: (a: number, b: number) => number; f:
 };
 
 // ------------------------------------------------------------------ the episode
-const Episode: React.FC<Partial<Props>> = ({ vo = [], shots = [], intro = null, durationInSeconds = 60 }) => {
+const Episode: React.FC<Partial<Props>> = ({ vo = [], shots = [], intro = null, durationInSeconds = 60, shaders = false }) => {
   useInkFont();
   const f = useCurrentFrame();
   const END = Math.round(durationInSeconds * 30);
@@ -239,16 +241,20 @@ const Episode: React.FC<Partial<Props>> = ({ vo = [], shots = [], intro = null, 
         const [fx, fy] = shot.focus ?? [960, 600];
         const night = ['night', 'savanna-night', 'cave-night', 'village-night', 'town-night', 'room-night'].includes(shot.bg);
         const wash = shot.bg === 'night' ? 0.86 : shot.bg === 'lab-dark' ? 0.8 * easeInOut(t(...(shot.dark ?? [0.1, 0.3]))) :
-          night ? (shot.glow ? 0.18 : 0.3) : 0;
+          night ? (shaders ? 0.1 : shot.glow ? 0.18 : 0.3) : 0;
+        const skyMode = ({ 'savanna-night': 'night', 'village-night': 'night', 'town-night': 'night', dusk: 'dusk', playa: 'day' } as Record<string, 'night' | 'dusk' | 'day'>)[shot.bg];
+        const lights = shaders ? (shot.props ?? []).filter((p) => ['fire', 'torch', 'candle'].includes(p.k)) : [];
         const fire = (shot.props ?? []).find((p) => p.k === 'fire');
         return (
           <AbsoluteFill key={si} style={{ opacity: o }}>
             <AbsoluteFill style={{ transform: `scale(${lerp(z0, z1, easeInOut(t(0, 1)))})`, transformOrigin: `${fx}px ${fy}px` }}>
               <Paper />
+              {shaders && skyMode && <InkSky mode={skyMode} height={shot.bg === 'playa' ? 600 : 780} />}
+              {shaders && shot.bg === 'cave-night' && <CaveRock />}
               <svg width={W} height={H} style={{ position: 'absolute', inset: 0 }}>
                 <defs><Boil id={`eb${si}`} /></defs>
                 <g filter={`url(#eb${si})`}>
-                  <Background shot={shot} t={t} f={f} />
+                  <Background shot={shot} t={t} f={f} sh={shaders} />
                   {shot.bg === 'night' && <Stars o={0.8} n={60} seed={41} maxY={1080} />}
                   {fire && shot.glow && <Glow x={fire.x} y={fire.y - 60} r={700} o={1} id={`fg${si}`} />}
                   {(shot.props ?? []).filter((p) => !['eyes', 'cateyes', 'subscribe'].includes(p.k)).map((p, i) => (
@@ -258,6 +264,15 @@ const Episode: React.FC<Partial<Props>> = ({ vo = [], shots = [], intro = null, 
                 </g>
               </svg>
               <Wash o={wash} />
+              {lights.map((p, i) => {
+                // the light comes on with its fire/torch (and follows a moving torch)
+                const on = p.word || (p.at && p.at > 0) ? easeOut(when(p, 0.1)) : 1;
+                const to = p.to as number[] | undefined; const mv = to ? easeInOut(t(0, 1)) : 0;
+                const lx = to ? lerp(p.x, to[0], mv) : p.x; const ly = to ? lerp(p.y, to[1], mv) : p.y;
+                return on > 0.01 ? <FireLight key={`l${i}`} x={lx} y={ly - (p.k === 'fire' ? 70 : 140) * (p.s ?? 1)}
+                  r={p.k === 'candle' ? 0.32 : 0.55} strength={(p.k === 'candle' ? 0.4 : 0.55) * on} /> : null;
+              })}
+              {shaders && <PaperWash o={0.5} />}
               <svg width={W} height={H} style={{ position: 'absolute', inset: 0 }}>
                 {(shot.props ?? []).filter((p) => ['eyes', 'cateyes', 'subscribe'].includes(p.k)).map((p, i) => (
                   <PropView key={`q${i}`} p={p} t={t} when={when} f={f} />

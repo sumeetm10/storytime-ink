@@ -8,5 +8,5 @@ const [out, a, b] = process.argv.slice(2);
 const inputProps = a === '--props' ? JSON.parse(fs.readFileSync(b, 'utf8')) : { ...(a ? { top: a } : {}), ...(b ? { bottom: b } : {}) };
 const serveUrl = await bundle({ entryPoint: path.join(process.cwd(), 'src', 'index.ts') });
 const composition = await selectComposition({ serveUrl, id: 'InkThumb', inputProps });
-await renderStill({ serveUrl, composition, inputProps, output: out, frame: 0, scale: 2 / 3, imageFormat: 'jpeg', jpegQuality: 92, overwrite: true });
+await renderStill({ serveUrl, composition, inputProps, chromiumOptions: { gl: 'angle' }, output: out, frame: 0, scale: 2 / 3, imageFormat: 'jpeg', jpegQuality: 92, overwrite: true });
 console.log('thumb', out);
