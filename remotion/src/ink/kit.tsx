@@ -64,7 +64,7 @@ export const Shape: React.FC<{ d: string; fill?: string; sw?: number; o?: number
 
 export type Mood = 'neutral' | 'worried' | 'happy' | 'sleepy' | 'wow' | 'scared';
 export type Pose = { la?: number; ra?: number; lb?: number; rb?: number; ll?: number; rl?: number; sit?: boolean };
-type Hair = 'shaggy' | 'bun' | 'kid' | 'beard' | 'short' | 'bald';
+type Hair = 'shaggy' | 'bun' | 'kid' | 'beard' | 'short' | 'bald' | 'elder';
 export type Outfit = 'fur' | 'shirt' | 'coat' | 'gown';
 
 const limb = (x: number, y: number, dir: number, a: number, b: number, len: number) => {
@@ -81,7 +81,7 @@ const Limb: React.FC<{ d: string; skin: string; w?: number }> = ({ d, skin, w = 
   </g>
 );
 
-const Face: React.FC<{ mood: Mood; blink: boolean; look: number; skin: string }> = ({ mood, blink, look, skin }) => {
+const Face: React.FC<{ mood: Mood; blink: boolean; look: number; skin: string; open?: number }> = ({ mood, blink, look, skin, open = -1 }) => {
   const ey = -284;
   const brow = {
     neutral: [[-28, -302, -8, -304], [8, -304, 28, -302]], happy: [[-28, -300, -8, -306], [8, -306, 28, -300]],
@@ -110,7 +110,13 @@ const Face: React.FC<{ mood: Mood; blink: boolean; look: number; skin: string }>
       ))}
       {brow.map(([x1, y1, x2, y2], i) => <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={INK} strokeWidth={5} strokeLinecap="round" />)}
       <path d="M 2 -272 Q 9 -266 2 -262" stroke={INK} strokeWidth={3.5} fill="none" strokeLinecap="round" />
-      {mood === 'wow' ? <ellipse cx={0} cy={-250} rx={7} ry={9} fill={INK} />
+      {open >= 0 ? (
+        // talking: the mouth opens with the voice (open 0..1), shaped by the mood
+        open > 0.06
+          ? <g><ellipse cx={0} cy={-250} rx={9 + 5 * open} ry={2 + 12 * open} fill={INK} />
+              <ellipse cx={0} cy={-250 + 6 * open} rx={5 + 3 * open} ry={1 + 4 * open} fill="#c0504a" /></g>
+          : <path d={mood === 'happy' ? 'M -14 -256 Q 0 -242 14 -256' : 'M -9 -251 L 9 -251'} stroke={INK} strokeWidth={4.5} fill="none" strokeLinecap="round" />
+      ) : mood === 'wow' ? <ellipse cx={0} cy={-250} rx={7} ry={9} fill={INK} />
         : <path d={mouth} stroke={INK} strokeWidth={4.5} fill="none" strokeLinecap="round" />}
     </g>
   );
@@ -118,6 +124,19 @@ const Face: React.FC<{ mood: Mood; blink: boolean; look: number; skin: string }>
 
 const HairShape: React.FC<{ hair: Hair; color?: string }> = ({ hair, color }) => {
   const h = color ?? C.hair;
+  if (hair === 'elder') return (
+    // bald on top, white tufts over the ears, a big round beard and bushy brows
+    <g>
+      {[-1, 1].map((d) => (
+        <g key={d} stroke={INK} strokeWidth={9} strokeLinecap="round" fill="none">
+          <path d={`M ${d * 46} -296 q ${d * 9} -2 ${d * 11} -10 M ${d * 48} -286 q ${d * 10} 1 ${d * 13} -5 M ${d * 47} -276 q ${d * 9} 4 ${d * 12} 1`} />
+          <path d={`M ${d * 46} -296 q ${d * 9} -2 ${d * 11} -10 M ${d * 48} -286 q ${d * 10} 1 ${d * 13} -5 M ${d * 47} -276 q ${d * 9} 4 ${d * 12} 1`} stroke={h} strokeWidth={4.5} />
+        </g>
+      ))}
+      <Shape d="M -46 -262 Q -56 -206 -24 -186 Q 0 -174 24 -186 Q 56 -206 46 -262 Q 34 -238 14 -244 Q 0 -232 -14 -244 Q -34 -238 -46 -262 Z" fill={h} />
+      <Shape d="M -34 -308 Q -18 -322 -4 -306 Q -16 -300 -34 -308 Z M 4 -306 Q 18 -322 34 -308 Q 16 -300 4 -306 Z" fill={h} sw={3.5} />
+    </g>
+  );
   if (hair === 'bald') return <Shape d="M -48 -282 Q -52 -300 -44 -306 L -40 -290 Z M 48 -282 Q 52 -300 44 -306 L 40 -290 Z" fill={h} />;
   if (hair === 'short') return <Shape d="M -48 -290 Q -52 -340 0 -340 Q 52 -340 48 -290 Q 40 -318 10 -318 Q -10 -328 -26 -316 Q -42 -310 -48 -290 Z" fill={h} />;
   if (hair === 'bun') return (
@@ -139,9 +158,9 @@ const HairShape: React.FC<{ hair: Hair; color?: string }> = ({ hair, color }) =>
 export const Person: React.FC<{
   x: number; y: number; s?: number; skin?: string; tunic?: string; hair?: Hair; mood?: Mood; pose?: Pose;
   blink?: boolean; look?: number; flip?: boolean; carry?: React.ReactNode;
-  outfit?: Outfit; hairColor?: string; glasses?: boolean; brow?: boolean; hand?: React.ReactNode;
+  outfit?: Outfit; hairColor?: string; glasses?: boolean; brow?: boolean; hand?: React.ReactNode; mouth?: number; necklace?: boolean;
 }> = ({ x, y, s = 1, skin = C.skin2, tunic = C.ochre, hair = 'shaggy', mood = 'neutral', pose = {}, blink = false, look = 0, flip = false, carry,
-  outfit = 'fur', hairColor, glasses = false, brow = false, hand }) => {
+  outfit = 'fur', hairColor, glasses = false, brow = false, hand, mouth = -1, necklace = false }) => {
   const { la = 12, ra = 12, lb = 0, rb = 0, ll = 6, rl = 6, sit = false } = pose;
   const hipY = sit ? -64 : -120;
   const shY = hipY - 92;
@@ -179,6 +198,9 @@ export const Person: React.FC<{
           <path d={`M -12 ${shY - 2} L 0 ${shY + 14} L 12 ${shY - 2}`} stroke={INK} strokeWidth={3.5} fill="none" />
         </>
       )}
+      {necklace && <g>{[-24, -14, -4, 6, 16, 26].map((bx, i) => (
+        <path key={i} d={`M ${bx - 3} ${shY + 10 + Math.abs(bx) * -0.2 + 14} l 3 9 l 3 -9 Z`} fill="#f4ecd8" stroke={INK} strokeWidth={2} />
+      ))}<path d={`M -30 ${shY + 8} Q 0 ${shY + 34} 30 ${shY + 8}`} stroke={INK} strokeWidth={2.5} fill="none" /></g>}
       <Limb d={R.d} skin={skin} />
       {carry && <g transform={`translate(${(L.hx + R.hx) / 2} ${(L.hy + R.hy) / 2})`}>{carry}</g>}
       {hand && <g transform={`translate(${R.hx} ${R.hy})`}>{hand}</g>}
@@ -189,7 +211,7 @@ export const Person: React.FC<{
         <ellipse cx={47} cy={-280} rx={8} ry={11} fill={skin} stroke={INK} strokeWidth={4} />
         <Shape d="M 0 -336 C 34 -336 50 -310 48 -280 C 46 -244 26 -222 0 -222 C -26 -222 -46 -244 -48 -280 C -50 -310 -34 -336 0 -336 Z" fill={skin} />
         <HairShape hair={hair} color={hairColor} />
-        <Face mood={mood} blink={blink} look={look} skin={skin} />
+        <Face mood={mood} blink={blink} look={look} skin={skin} open={mouth} />
         {brow && <path d="M -36 -298 Q -18 -312 0 -302 Q 18 -312 36 -298" stroke={INK} strokeWidth={9} fill="none" strokeLinecap="round" />}
         {glasses && <g fill="none" stroke={INK} strokeWidth={4}><circle cx={-17} cy={-284} r={15} /><circle cx={17} cy={-284} r={15} />
           <line x1={-2} y1={-286} x2={2} y2={-286} /></g>}

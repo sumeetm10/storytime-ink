@@ -29,7 +29,7 @@ import wiki  # noqa: E402
 
 VOICE = "en-US-BrianMultilingualNeural"   # config.yaml tts.voice
 GAP = 0.42
-DELIVERY = {"hook": ("+2%", "+0Hz"), "walk": ("+4%", "+0Hz"), "cold": ("-2%", "-3Hz"), "question": ("+2%", "+3Hz"),
+DELIVERY = {"hush": ("-6%", "-4Hz"), "joke": ("+4%", "+3Hz"), "hook": ("+2%", "+0Hz"), "walk": ("+4%", "+0Hz"), "cold": ("-2%", "-3Hz"), "question": ("+2%", "+3Hz"),
             "reveal": ("-2%", "-2Hz"), "stop": ("-6%", "-3Hz"), "payoff": ("-4%", "-2Hz"), "cta": ("+3%", "+2Hz")}
 
 
@@ -87,6 +87,74 @@ def voice(lines, job):
     return vo, out
 
 
+HOST_STYLE = (
+    "Grandpa Flint, an old, warm and funny grandfather telling a true story by the fire to children: a rich, slightly "
+    "gravelly mature voice with clear articulation and a lively storyteller rhythm. Genuinely surprised and delighted on "
+    "the reveals, a soft hushed voice on the scary or sad parts, a light chuckle on the jokes, playful when he talks to the "
+    "listener, gentle and warm at the end. Expressive but natural, never shouty, no long pauses inside a line")
+MOOD = {"hook": "happy", "walk": "happy", "cold": "worried", "question": "wow", "reveal": "wow", "stop": "wow",
+        "payoff": "happy", "cta": "happy", "hush": "worried", "joke": "happy"}
+
+
+def acted_voice(ep, job):
+    """The episode in Grandpa Flint's acted voice (Gemini TTS, geo-shorts' acted.py): one take per part,
+    so a whole episode costs only a handful of the free daily takes. Any failed part stops the build -
+    an episode never mixes two voices."""
+    import os
+    if not os.environ.get("GEMINI_API_KEY"):
+        from dotenv import dotenv_values
+        os.environ["GEMINI_API_KEY"] = dotenv_values(ROOT.parent / "doodle-engine" / ".env").get("GEMINI_API_KEY", "")
+    sys.path.insert(0, str(ROOT.parent / "geo-shorts"))
+    import acted
+    acted.VOICE = getattr(ep, "VOICE", "Gacrux")
+    acted.STYLE["host"] = HOST_STYLE
+    starts = [i for i, (_, _, sh) in enumerate(ep.LINES) if i == 0 or (sh and sh.get("chapter"))]
+    parts = []
+    for a, b in zip(starts, starts[1:] + [len(ep.LINES)]):
+        for c in range(a, b, 14):                      # long parts in pieces of <= 14 lines
+            parts.append((c, min(b, c + 14)))
+    vo, wavs, t = [], [], 0.0
+    for k, (a, b) in enumerate(parts):
+        lines = [ep.LINES[i][0] for i in range(a, b)]
+        pvo, mp3 = acted.perform(lines, "host", job / f"part{k:02d}")
+        wav = job / f"part{k:02d}.wav"
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(mp3), "-ar", "48000", "-ac", "1", str(wav)], check=True)
+        with wave.open(str(wav)) as w:
+            d = w.getnframes() / w.getframerate()
+        for v in pvo:
+            vo.append({"text": v["text"], "start": round(v["start"] + t, 3), "end": round(v["end"] + t, 3)})
+        wavs.append(wav)
+        t += d + GAP
+        print(f"  [part {k}] lines {a}-{b - 1}: {d:.1f}s")
+    raw = job / "voice_raw.wav"
+    frames = []
+    for wv in wavs:
+        with wave.open(str(wv)) as w:
+            frames.append(w.readframes(w.getnframes()))
+    with wave.open(str(raw), "wb") as w:
+        w.setnchannels(1); w.setsampwidth(2); w.setframerate(48000)
+        w.writeframes((b"\x00\x00" * int(48000 * GAP)).join(frames))
+    out = job / "voice.mp3"
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(raw), "-af", "loudnorm=I=-16:TP=-1.5:LRA=7", "-ar", "48000",
+                    "-b:a", "192k", str(out)], check=True)
+    return vo, out
+
+
+def mouth_track(voice_mp3, secs):
+    """How open Flint's mouth is on each frame (0..1), from the loudness of the narration."""
+    import numpy as np
+    r = subprocess.run(["ffmpeg", "-v", "error", "-i", str(voice_mp3), "-ac", "1", "-ar", "16000", "-f", "s16le", "-"],
+                       capture_output=True, check=True)
+    x = np.frombuffer(r.stdout, dtype=np.int16).astype(np.float32) / 32768
+    hop = 16000 // 30
+    n = int(secs * 30)
+    rms = np.array([np.sqrt(np.mean(x[i * hop:(i + 1) * hop] ** 2)) if i * hop < len(x) else 0.0 for i in range(n)])
+    ref = np.percentile(rms[rms > 0], 95) if (rms > 0).any() else 1.0
+    m = np.clip((rms / ref - 0.12) / 0.88, 0, 1)
+    m = np.convolve(m, [0.25, 0.5, 0.25], mode="same")           # a little smoothing, no jitter
+    return [round(float(v), 2) for v in m]
+
+
 def main():
     slug = sys.argv[1]
     js = ROOT / "episodes" / f"{slug}.json"
@@ -110,6 +178,8 @@ def main():
         if [v["text"] for v in vo] != [t for t, _ in lines]:
             raise SystemExit("the script changed since the voice was made - run without --reuse")
         voice_mp3 = job / "voice.mp3"
+    elif getattr(ep, "ACTED", False):
+        vo, voice_mp3 = acted_voice(ep, job)
     else:
         vo, voice_mp3 = voice(lines, job)
     secs = round(vo[-1]["end"] + 1.8, 2)
@@ -119,7 +189,9 @@ def main():
             cur = {**shot, "from": i}
             shots.append(cur)
     props = {"vo": vo, "shots": shots, "intro": getattr(ep, "INTRO", None), "durationInSeconds": secs,
-             "shaders": bool(getattr(ep, "SHADERS", False))}
+             "shaders": bool(getattr(ep, "SHADERS", False)),
+             "host": {"mouth": mouth_track(job / "voice.mp3", secs), "moods": [getattr(ep, "MOODS", {}).get(i, MOOD.get(k, "happy"))
+                      for i, (_, k, _) in enumerate(ep.LINES)]} if getattr(ep, "HOST", False) else None}
     props_path.write_text(json.dumps(props), encoding="utf-8")
     print(f"[props ] {len(vo)} lines, {len(shots)} shots, {secs / 60:.1f} min")
     if "--props" in sys.argv:

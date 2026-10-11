@@ -2,6 +2,7 @@ import React from 'react';
 import { AbsoluteFill, Img, staticFile, useCurrentFrame } from 'remotion';
 import InkPilot from './InkPilot';
 import { CaveRock, FireLight, InkSky, PaperWash } from './shaders';
+import { Host, HostBadge } from './host';
 import {
   Acacia, Boil, Bubble, C, Eyes, Fire, Glow, H, HAND, INK, InkFonts, useInkFont, Moon, Person, Shape, Stars, Tag, Tuft, W,
   clamp, easeInOut, easeOut, lerp, prog,
@@ -36,7 +37,8 @@ type Shot = {
   big?: El & { text: string; sub?: string; y?: number; size?: number; light?: boolean };
 };
 type Props = { vo: VoLine[]; shots: Shot[]; intro?: { lines: number; at: Record<string, number> } | null; durationInSeconds: number;
-  shaders?: boolean };   // painted WebGL skies, rock, firelight and paper wash (shaders.tsx)
+  shaders?: boolean;
+  host?: { mouth: number[]; moods: string[] } | null };   // Grandpa Flint: mouth per frame, mood per line   // painted WebGL skies, rock, firelight and paper wash (shaders.tsx)
 
 const CAST: Record<string, { skin: string; tunic: string; hair: 'shaggy' | 'bun' | 'kid' | 'beard' | 'short' | 'bald'; s?: number;
   outfit?: Outfit; hairColor?: string; glasses?: boolean; brow?: boolean }> = {
@@ -201,13 +203,23 @@ const Background: React.FC<{ shot: Shot; t: (a: number, b: number) => number; f:
 };
 
 // ------------------------------------------------------------------ the episode
-const Episode: React.FC<Partial<Props>> = ({ vo = [], shots = [], intro = null, durationInSeconds = 60, shaders = false }) => {
+const Episode: React.FC<Partial<Props>> = ({ vo = [], shots = [], intro = null, durationInSeconds = 60, shaders = false, host = null }) => {
   useInkFont();
   const f = useCurrentFrame();
   const END = Math.round(durationInSeconds * 30);
   const cue = (i: number) => Math.round(((vo[i]?.start) ?? durationInSeconds) * 30);
   const lineEnd = (i: number) => (i + 1 < vo.length ? cue(i + 1) : END);
   const introEnd = intro ? cue(intro.lines) : 0;
+  const mouth = host ? (host.mouth[f] ?? 0) : -1;
+  const lineNow = Math.max(0, vo.findIndex((v, i) => f < cue(i + 1) || i === vo.length - 1));
+  const hostMood = (host?.moods[lineNow] ?? 'happy') as Mood;
+  // the corner badge shows whenever Flint isn't standing in the shot himself
+  const flintIn = (si: number) => (shots[si].actors ?? []).some((a) => a.who === 'flint');
+  const badgeO = host ? shots.reduce((acc, sh, si) => {
+    const S = cue(sh.from); const E = si + 1 < shots.length ? cue(shots[si + 1].from) : END;
+    const o = (si === 0 ? 1 : prog(f, S - 8, S + 8)) * (si + 1 < shots.length ? 1 - prog(f, E - 8, E + 8) : 1);
+    return acc + (flintIn(si) ? 0 : o);
+  }, 0) : 0;
 
   return (
     <AbsoluteFill style={{ background: C.paper, overflow: 'hidden' }}>
@@ -260,7 +272,7 @@ const Episode: React.FC<Partial<Props>> = ({ vo = [], shots = [], intro = null, 
                   {(shot.props ?? []).filter((p) => !['eyes', 'cateyes', 'subscribe'].includes(p.k)).map((p, i) => (
                     <PropView key={`p${i}`} p={p} t={t} when={when} f={f} />
                   ))}
-                  {(shot.actors ?? []).map((a, i) => <ActorView key={`a${i}`} a={a} t={t} when={when} f={f} />)}
+                  {(shot.actors ?? []).map((a, i) => <ActorView key={`a${i}`} a={a} t={t} when={when} f={f} mouth={mouth} hostMood={hostMood} />)}
                 </g>
               </svg>
               <Wash o={wash} />
@@ -309,11 +321,29 @@ const Episode: React.FC<Partial<Props>> = ({ vo = [], shots = [], intro = null, 
           </AbsoluteFill>
         );
       })}
+      {host && badgeO > 0.01 && (
+        <svg width={W} height={H} style={{ position: 'absolute', inset: 0 }}>
+          <HostBadge mood={hostMood} mouth={mouth} o={Math.min(1, badgeO)} />
+        </svg>
+      )}
     </AbsoluteFill>
   );
 };
 
-const ActorView: React.FC<{ a: ActorSpec; t: (a: number, b: number) => number; when: (el: El, d?: number) => number; f: number }> = ({ a, t, when, f }) => {
+const ActorView: React.FC<{ a: ActorSpec; t: (a: number, b: number) => number; when: (el: El, d?: number) => number; f: number;
+  mouth?: number; hostMood?: Mood }> = ({ a, t, when, f, mouth = -1, hostMood = 'happy' }) => {
+  if (a.who === 'flint') {
+    // the storyteller in the scene: talks with the voice, mood from the line unless the shot sets one
+    const show = a.at || a.word ? easeOut(when(a, 0.1)) : 1;
+    const mv = a.to && a.move ? easeInOut(t(a.move[0], a.move[1])) : 0;
+    return (
+      <g opacity={show}>
+        {POSES[a.pose ?? 'stand']?.sit && <Shape d={`M ${a.x - 60} ${a.y} L ${a.x - 64} ${a.y - 70} Q ${a.x + 20} ${a.y - 84} ${a.x + 110} ${a.y - 70} L ${a.x + 114} ${a.y} Z`} fill={C.rock} />}
+        <Host x={a.to ? lerp(a.x, a.to[0], mv) : a.x} y={a.y} s={a.s ?? 1.3} mood={a.mood ?? hostMood} mouth={mouth}
+          pose={POSES[a.pose ?? 'stand'] ?? POSES.stand} flip={a.flip} look={a.look ?? 0} />
+      </g>
+    );
+  }
   const cast = CAST[a.who] ?? CAST.dad;
   const show = a.at || a.word ? easeOut(when(a, 0.1)) : 1;
   if (show <= 0.001) return null;
