@@ -128,6 +128,15 @@ def main():
     bed = job / "score.wav"
     score.build_score(bed, secs + 0.5, tone="calm", seed=96)
     out = job / f"{slug}.mp4"
+    if "--no-sfx" not in sys.argv:
+        # little sound effects (pops, whooshes) laid under the narration
+        import sfx
+        fx = sfx.build(vo, shots, secs, job / "sfx.wav")
+        with_fx = job / "voice_fx.mp3"
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(voice_mp3), "-i", str(fx), "-filter_complex",
+                        "[1:a]volume=0.45[f];[0:a][f]amix=inputs=2:duration=first:normalize=0[a]", "-map", "[a]",
+                        "-ar", "48000", "-b:a", "192k", str(with_fx)], check=True)
+        voice_mp3 = with_fx
     mix.mix(silent, voice_mp3, bed, out, bed_db=-13)
     (job / "meta.json").write_text(json.dumps(ep.META, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"[done  ] {out}  ({mix.duration(out) / 60:.1f} min)")

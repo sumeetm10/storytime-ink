@@ -10,6 +10,7 @@ import {
   Bed, BigCat, Bones, Book, Calendar, Candle, CatEyes, Clipboard, ClueCard, Clock, Desk, DreamIcons, Flute, Hut, Magnifier,
   Mound, MoonRow, NotchBone, Notes, Rock, SleepBar, StreetLamp, Subscribe, Zzz,
 } from './props';
+import { Beads, Ceiling, ChildSkull, Doll, Eagle, Flutings, Footprints, Grave, Skeleton, StoneBalls, Torch } from './kids';
 
 // =============================================================================
 // An ink episode for Story_time10, drawn from data: props.shots comes from an
@@ -23,7 +24,7 @@ type El = { at?: number; line?: number; word?: string };
 type ActorSpec = El & {
   who: string; x: number; y: number; s?: number; pose?: string; mood?: Mood; look?: number; flip?: boolean; lie?: boolean;
   ghost?: boolean; to?: [number, number]; move?: [number, number]; then?: { at: number; mood?: Mood; pose?: string };
-  talk?: [number, number]; phone?: boolean;
+  talk?: [number, number]; phone?: boolean; carry?: string;
 };
 type PropSpec = El & { k: string; x: number; y: number; s?: number; [key: string]: unknown };
 type TagSpec = El & { text: string; x: number; y: number; size?: number; rot?: number; color?: string };
@@ -50,10 +51,12 @@ const CAST: Record<string, { skin: string; tunic: string; hair: 'shaggy' | 'bun'
   noble: { skin: '#efcaa4', tunic: '#7a2f3a', hair: 'bun', hairColor: '#e8dcc0', outfit: 'gown' },
   noble2: { skin: '#e8c098', tunic: '#2f4a6a', hair: 'short', outfit: 'shirt' },
   modern: { skin: '#b98a62', tunic: '#8a93a6', hair: 'short', outfit: 'shirt' },
+  maria: { skin: '#f0cfa8', tunic: '#5f86b8', hair: 'bun', hairColor: '#6a4a30', outfit: 'gown', s: 0.72 },
+  modkid: { skin: '#c99a74', tunic: '#e0a040', hair: 'kid', outfit: 'shirt', s: 0.72 },
 };
 
 const POSES: Record<string, Pose> = {
-  stand: { la: 12, ra: 12 }, sit: { sit: true, la: 26, lb: -60, ra: 22, rb: -50 }, wave: { la: 12, ra: 140, rb: -40 },
+  stand: { la: 12, ra: 12 }, hold: { la: 60, lb: -70, ra: 60, rb: -70 }, sit: { sit: true, la: 26, lb: -60, ra: 22, rb: -50 }, wave: { la: 12, ra: 140, rb: -40 },
   point: { la: 12, ra: 95, rb: -10 }, scared: { la: 150, lb: 30, ra: 150, rb: 30 }, feed: { sit: true, la: 30, lb: -60, ra: 80, rb: 20 },
   pray: { sit: true, la: 40, lb: -110, ra: 40, rb: -110 }, play: { sit: true, la: 70, lb: -100, ra: 70, rb: -80 },
   write: { sit: true, la: 30, lb: -70, ra: 75, rb: -55 }, sneak: { la: 70, lb: 50, ra: 60, rb: 60, ll: -24, rl: 30 },
@@ -96,6 +99,19 @@ const Background: React.FC<{ shot: Shot; t: (a: number, b: number) => number; f:
         <Shape d="M 0 730 Q 300 700 620 722 Q 980 744 1320 710 Q 1640 686 1920 718 L 1920 1080 L 0 1080 Z" fill={night ? '#6f6a3e' : C.grass} />
         <Acacia x={1680} y={740} s={0.85} fill={night ? '#3f5238' : '#6f8a55'} />
         {[[120, 1040], [470, 1010], [1500, 1030], [1800, 1060], [300, 960]].map(([x, y], i) => <Tuft key={i} x={x} y={y} s={1.2} i={i} color={night ? '#5d5a32' : '#8f8a46'} />)}
+      </>
+    );
+  }
+  if (bg === 'playa') {
+    return (
+      <>
+        <defs><linearGradient id="playaSky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#9fc0dc" /><stop offset="1" stopColor="#f2dcb4" />
+        </linearGradient></defs>
+        <rect x={0} y={0} width={W} height={H} fill="url(#playaSky)" />
+        <Shape d="M 0 520 L 240 420 L 420 470 L 700 380 L 960 470 L 1260 400 L 1520 460 L 1920 390 L 1920 600 L 0 600 Z" fill="#a8a0b8" />
+        <Shape d="M 0 560 Q 960 520 1920 560 L 1920 1080 L 0 1080 Z" fill="#e8dcc0" />
+        {Array.from({ length: 16 }, (_, i) => <path key={i} d={`M ${(i * 137) % 1900} ${620 + ((i * 89) % 420)} q 40 -8 80 0`} stroke="#c9b894" strokeWidth={4} fill="none" />)}
       </>
     );
   }
@@ -304,7 +320,8 @@ const ActorView: React.FC<{ a: ActorSpec; t: (a: number, b: number) => number; w
       hand={poseName === 'write' ? <path d="M 0 0 L 26 -40" stroke={INK} strokeWidth={5} /> :
         poseName === 'drink' ? <Shape d="M -14 -10 L 14 -10 L 10 18 L -10 18 Z" fill="#fbf4e4" sw={3} /> :
           poseName === 'sneak' ? <Shape d="M -30 0 Q -40 60 0 64 Q 40 60 30 0 Z" fill="#a88a5a" sw={4} /> : undefined}
-      carry={poseName === 'play' ? <Shape d="M -70 -6 L 70 -14 L 70 -4 L -70 4 Z" fill="#e8dcbc" sw={3} /> : undefined} />
+      carry={a.carry === 'toddler' ? <Person x={10} y={70} s={0.42} skin={C.skin3} tunic={C.sage} hair="kid" mood="happy" look={1} pose={{ la: 120, ra: 120 }} blink={blink} />
+        : poseName === 'play' ? <Shape d="M -70 -6 L 70 -14 L 70 -4 L -70 4 Z" fill="#e8dcbc" sw={3} /> : undefined} />
   );
   const seated = !a.lie && pose.sit && poseName !== 'sitbed';
   return (
@@ -409,6 +426,32 @@ const PropView: React.FC<{ p: PropSpec; t: (a: number, b: number) => number; whe
     case 'streetlamp': node = <StreetLamp x={p.x} y={p.y} on={easeOut(t(p.light as number, (p.light as number) + 0.08))} />; break;
     case 'clipboard': node = <Clipboard x={p.x} y={p.y} s={s} />; break;
     case 'subscribe': node = <Subscribe x={p.x} y={p.y} o={show} />; break;
+    case 'footprints': {
+      const w = win('walk');
+      node = <Footprints x0={p.x} y0={p.y} x1={p.x1 as number} y1={p.y1 as number} t={w ? t(w[0], w[1]) : 1} kid={p.kid as [number, number] | undefined}
+        slips={p.slips as number[] | undefined} n={(p.n as number) ?? 14} onlyKid={!!p.onlyKid} s={s} color={p.color as string | undefined} />;
+      break;
+    }
+    case 'eagle': {
+      const mv = p.move ? easeInOut(t((p.move as number[])[0], (p.move as number[])[1])) : 0;
+      const to = p.to as number[] | undefined;
+      node = <Eagle x={to ? lerp(p.x, to[0], mv) : p.x} y={to ? lerp(p.y, to[1], mv) : p.y} s={s} flip={!!p.flip} />;
+      break;
+    }
+    case 'flutings': { const d = win('draw'); node = <Flutings x={p.x} y={p.y} t={d ? t(d[0], d[1]) : 1} small={!!p.small} seed={(p.seed as number) ?? 4} />; break; }
+    case 'torch': {
+      const to = p.to as number[] | undefined;
+      const mv = to ? easeInOut(t(0, 1)) : 0;
+      node = <Torch x={to ? lerp(p.x, to[0], mv) : p.x} y={to ? lerp(p.y, to[1], mv) : p.y} s={s} />;
+      break;
+    }
+    case 'draw-skull': node = <ChildSkull x={p.x} y={p.y} s={s * 1.4} talons={!!p.talons} />; break;
+    case 'draw-doll': node = <Doll x={p.x} y={p.y} s={s * 1.4} />; break;
+    case 'draw-grave': node = <Grave x={p.x} y={p.y} />; break;
+    case 'beads': { const d = win('fill'); node = <Beads x={p.x} y={p.y} t={d ? easeOut(t(d[0], d[1])) : 1} />; break; }
+    case 'stoneballs': node = <StoneBalls x={p.x} y={p.y} s={s} />; break;
+    case 'ceiling': { const d = win('reveal'); node = <Ceiling t={d ? t(d[0], d[1]) : 1} />; break; }
+    case 'skeleton': node = <Skeleton x={p.x} y={p.y} s={s} />; break;
     case 'svg': {
       // a drawing written by the episode's author (Gemini) for things the library lacks;
       // drawn in a 400x400 box centred on (x, y). Scripts, handlers and links stripped.

@@ -2,6 +2,7 @@ import React from 'react';
 import { AbsoluteFill, Img, staticFile } from 'remotion';
 import { Boil, C, HAND, InkFonts, Moon, Person, Stars, W, H, useInkFont } from './kit';
 import { Mound } from './props';
+import { Flutings, Footprints, Torch } from './kids';
 
 // =============================================================================
 // Thumbnail for an ink episode (1920x1080, saved as a 1280x720 jpg): one big
@@ -9,7 +10,7 @@ import { Mound } from './props';
 // cave woman wide awake on her grass bed under the moon, the fire down to
 // embers. Same cast and paper as the episode.
 // =============================================================================
-const Thumb: React.FC<{ top?: string; bottom?: string; svg?: string }> = ({ top = "COULDN'T", bottom = 'SLEEP?', svg }) => {
+const Thumb: React.FC<{ top?: string; bottom?: string; svg?: string; scene?: string }> = ({ top = "COULDN'T", bottom = 'SLEEP?', svg, scene }) => {
   useInkFont();
   return (
   <AbsoluteFill style={{ overflow: 'hidden' }}>
@@ -21,6 +22,19 @@ const Thumb: React.FC<{ top?: string; bottom?: string; svg?: string }> = ({ top 
         <linearGradient id="tsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#141a36" /><stop offset="1" stopColor="#2f3560" /></linearGradient>
         <radialGradient id="temb" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stopColor="#ff9a3d" stopOpacity={0.55} /><stop offset="1" stopColor="#ff9a3d" stopOpacity={0} /></radialGradient>
       </defs>
+      {scene === 'kids' ? (
+        // a Stone Age kid in a torch-lit cave, finger lines on the wall, small footprints on the floor
+        <g filter="url(#tb)">
+          <rect x={0} y={0} width={W} height={H} fill="#7d6a58" />
+          <circle cx={1300} cy={560} r={700} fill="url(#temb)" />
+          <path d="M 0 900 Q 960 870 1920 900 L 1920 1080 L 0 1080 Z" fill="#5f4f40" stroke="#2a2320" strokeWidth={5} />
+          <Flutings x={760} y={640} t={1} small seed={21} />
+          <Footprints x0={120} y0={1010} x1={900} y1={990} t={1} n={7} onlyKid kid={[0, 1]} s={2} color="#e8d8b8" />
+          <Torch x={1660} y={980} s={1.4} />
+          <Person x={1240} y={1060} s={2.6} flip skin={C.skin3} tunic={C.sage} hair="kid" mood="wow" look={1}
+            pose={{ la: 12, ra: 100, rb: -20 }} />
+        </g>
+      ) : (
       <g filter="url(#tb)">
         <rect x={0} y={0} width={W} height={H} fill="url(#tsky)" />
         <Stars o={1} n={70} seed={3} maxY={700} />
@@ -40,6 +54,7 @@ const Thumb: React.FC<{ top?: string; bottom?: string; svg?: string }> = ({ top 
         <path d="M 470 930 L 650 900 M 480 900 L 640 935" stroke="#5a3a22" strokeWidth={16} strokeLinecap="round" />
         {[0, 1, 2].map((i) => <circle key={i} cx={530 + i * 40} cy={905 - (i % 2) * 10} r={10} fill="#ff8a3d" />)}
       </g>
+      )}
     </svg>
     <div style={{ position: 'absolute', left: 60, top: 70, width: 1000, fontFamily: HAND, fontWeight: 700, lineHeight: 0.95,
       fontSize: 190, color: '#ffd23a', WebkitTextStroke: '14px #1a1410', paintOrder: 'stroke fill',
